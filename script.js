@@ -30,14 +30,14 @@ const showWinner = (userWin, userChoice, compChoice) => {
     userScore++;
     userScorePara.innerText = userScore;
     msg.innerText = `You win! Your ${userChoice} beats ${compChoice}`;
-    msg.style.backgroundColor = "green";
+    // msg.style.backgroundColor = "green";
   } else {
     loseSound.currentTime = 0;
     loseSound.play();
     compScore++;
     compScorePara.innerText = compScore;
     msg.innerText = `You lost. ${compChoice} beats your ${userChoice}`;
-    msg.style.backgroundColor = "red";
+    // msg.style.backgroundColor = "red";
   }
 };
 
