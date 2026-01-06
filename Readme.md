@@ -17,7 +17,7 @@ A fun and interactive Rock Paper Scissors game.
 - DOM manipulation
 
 🔗 **Live Demo:**  
-https://rishamaza.github.io/Projects/Rock-Paper-Scissors-Game/
+https://rishamaza.github.io/Projects/Rock_Paper_Scissors_Game/
 
 ---
 
@@ -32,7 +32,7 @@ A classic Tic Tac Toe game built from scratch.
 - Responsive design (mobile + desktop)
 
 🔗 **Live Demo:**  
-https://rishamaza.github.io/Projects/Tic-Tac-Toe/
+https://rishamaza.github.io/Projects/Tic_Tac_Toe/
 
 ---
 
