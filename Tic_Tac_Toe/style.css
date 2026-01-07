@@ -78,6 +78,21 @@ h1{
     color: rgba(0, 255, 30, 1);
     font-weight: bolder;
 }
+#onePlayer, #twoPlayer {
+    background: linear-gradient(90deg, #05d3ee, #035fe0);
+    color: white;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 4);
+    transition: transform 0.2s;
+}
+#onePlayer:hover, #twoPlayer:hover {
+    transform: scale(1.05);
+}
 @media (max-width: 768px) {
     .overlay{
         position: static;

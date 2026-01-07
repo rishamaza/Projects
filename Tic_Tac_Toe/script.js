@@ -5,6 +5,8 @@ const resultText = document.getElementById("result-text");
 const restartBtn = document.getElementById("restart")
 const clickSound = new Audio("sounds/click.wav");
 const winSound = new Audio("sounds/win.wav");
+
+let isAImode = false;
 let turnX = true;
 let gameOver = false;
 
@@ -14,9 +16,17 @@ const winPatterns = [
   [0,4,8], [2,4,6]
 ];
 
+document.getElementById("onePlayer").onclick = () => {
+  isAImode = true;
+};
+
+document.getElementById("twoPlayer").onclick = () => {
+  isAImode = false;
+};
+
 boxes.forEach(box => {
   box.addEventListener("click", () => {
-    if (box.innerText !== "" || gameOver) return;
+    if (box.innerText !== "" || gameOver || (isAImode && !turnX)) return;
     clickSound.currentTime = 0;
     clickSound.play();
     if(turnX){
@@ -30,9 +40,36 @@ boxes.forEach(box => {
     if(!gameOver){
         turnX = !turnX;
         statusText.innerText = turnX ? "Player X turn" : "Player O turn";
+        if (isAImode && !turnX) {
+        setTimeout(aiMove, 400);
+      }   
     }
   });
 });
+
+function aiMove() {
+  let emptyBoxes = [];
+
+  boxes.forEach((box, index) => {
+    if (box.innerText === "") {
+      emptyBoxes.push(index);
+    }
+  });
+
+  if (emptyBoxes.length === 0) return;
+
+  const randomIndex = Math.floor(Math.random() * emptyBoxes.length);
+  const move = emptyBoxes[randomIndex];
+
+  boxes[move].innerText = "O";
+  boxes[move].classList.add("o");
+
+  checkWinner();
+  if (!gameOver) {
+    turnX = true;
+    statusText.innerText = "Player X turn";
+  }
+}
 
 function checkWinner() {
   for (let pattern of winPatterns) {
@@ -62,8 +99,12 @@ function showResult(message){
   overlay.classList.remove("hidden");
 }
 restartBtn.addEventListener("click", () => {
-  boxes.forEach(box => box.innerText = "");
+  boxes.forEach(box => {
+    box.innerText = "";
+    box.classList.remove("x", "o");
+  });
   turnX = true;
   gameOver = false;
   overlay.classList.add("hidden");
+  statusText.innerText = "Player X turn";
 });
